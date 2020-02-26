@@ -3258,7 +3258,7 @@ R_API int r_core_config_init(RCore *core) {
 	SETPREF ("dir.types", "/usr/include", "Default path to look for cparse type files");
 	SETPREF ("dir.libs", "", "Specify path to find libraries to load when bin.libs=true");
 	p = r_sys_getenv (R_SYS_HOME);
-	SETCB ("dir.home", p, &cb_dirhome, "Path for the home directory");
+	SETCB ("dir.home", p? p: "/", &cb_dirhome, "Path for the home directory");
 	free (p);
 	p = r_sys_getenv (R_SYS_TMP);
 	SETCB ("dir.tmp", p? p: "", &cb_dirtmp, "Path of the tmp directory");
