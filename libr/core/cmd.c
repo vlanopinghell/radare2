@@ -3477,8 +3477,8 @@ ignore:
 			}
 		}
 
-		r_str_trim_head (ptr + 1);
 		offstr = ptr + 1;
+		r_str_trim_head (offstr);
 
 		addr = r_num_math (core->num, offstr);
 		addr_is_set = true;
@@ -3564,8 +3564,7 @@ next_arroba:
 				if (addr_is_set) {
 					core->offset = addr;
 				}
-				r_str_trim_head (cmd);
-				ret = r_cmd_call (core->rcmd, cmd);
+				ret = r_cmd_call (core->rcmd, r_str_trim_head_ro (cmd));
 			} else {
 				if (addr_is_set) {
 					if (ptr[1]) {
@@ -3573,8 +3572,7 @@ next_arroba:
 						r_core_block_read (core);
 					}
 				}
-				r_str_trim_head (cmd);
-				ret = r_cmd_call (core->rcmd, cmd);
+				ret = r_cmd_call (core->rcmd, r_str_trim_head_ro (cmd));
 
 			}
 			if (tmpseek) {
